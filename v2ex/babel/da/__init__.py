@@ -128,9 +128,9 @@ def GetSite():
         else:
             site = Site()
             site.num = 1
-            site.title = 'V2EX'
-            site.domain = 'v2ex.appspot.com'
-            site.slogan = 'way to explore'
+            site.title = 'GeeKaa'
+            site.domain = 'geekaa3.appspot.com'
+            site.slogan = 'geekaa slogan'
             site.description = ''
             site.put()
             memcache.set('site', site, 86400)

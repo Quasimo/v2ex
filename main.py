@@ -52,8 +52,8 @@ class HomeHandler(webapp.RequestHandler):
         
     def get(self):
         host = self.request.headers['Host']
-        if host == 'beta.v2ex.com':
-            self.redirect('http://v2ex.appspot.com/')
+        if host == 'geekaa.com':
+            self.redirect('http://geekaa3.appspot.com/')
             return
         site = GetSite()
         browser = detect(self.request)
