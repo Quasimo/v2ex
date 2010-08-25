@@ -34,7 +34,7 @@ class AboutHandler(webapp.RequestHandler):
         template_values['rnd'] = random.randrange(1, 100)
         note = GetKindByNum('Note', 127)
         if note is False:
-            note = GetKindByNum('Note', 2)
+            note = GetKindByNum('Note', 1)
         template_values['note'] = note
         member = CheckAuth(self)
         if member:
@@ -52,7 +52,7 @@ class FAQHandler(webapp.RequestHandler):
         template_values['rnd'] = random.randrange(1, 100)
         note = GetKindByNum('Note', 195)
         if note is False:
-            note = GetKindByNum('Note', 4)
+            note = GetKindByNum('Note', 3)
         template_values['note'] = note
         member = CheckAuth(self)
         if member:
@@ -62,7 +62,7 @@ class FAQHandler(webapp.RequestHandler):
         output = template.render(path, template_values)
         self.response.out.write(output)
 
-class MissionHandler(webapp.RequestHandler):
+class PlanHandler(webapp.RequestHandler):
     def get(self):
         site = GetSite()
         template_values = {}
@@ -75,10 +75,28 @@ class MissionHandler(webapp.RequestHandler):
         member = CheckAuth(self)
         if member:
             template_values['member'] = member
-        template_values['page_title'] = site.title + u' › Mission'
-        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'mission.html')
+        template_values['page_title'] = site.title + u' › Plan'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'plan.html')
         output = template.render(path, template_values)
         self.response.out.write(output)
+        
+class UpdatesHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        note = GetKindByNum('Note', 240)
+        if note is False:
+            note = GetKindByNum('Note', 7)
+        template_values['note'] = note
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › Updates'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'updates.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)        
 
 class AdvertiseHandler(webapp.RequestHandler):
     def get(self):
@@ -112,7 +130,8 @@ def main():
     application = webapp.WSGIApplication([
     ('/about', AboutHandler),
     ('/faq', FAQHandler),
-    ('/mission', MissionHandler),
+    ('/plan', PlanHandler),
+    ('/updates', UpdatesHandler),
     ('/advertise', AdvertiseHandler),
     ('/advertisers', AdvertisersHandler)
     ],
