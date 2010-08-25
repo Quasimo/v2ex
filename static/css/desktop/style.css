@@ -717,3 +717,15 @@ a.tiny_label:hover {
 	font-weight: bold;
 	color: #e1e1e1
 }
+
+a.white:hover {
+	text-shadow: none
+}
+
+#Navigation ul li a {
+	color: #efefef;
+}
+
+#Navigation ul li a:hover {
+	color: #fff;
+}

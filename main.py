@@ -162,7 +162,7 @@ class HomeHandler(webapp.RequestHandler):
             if c is None:
                 c = ''
                 i = 0
-                categories = [u'分享与探索', u'城市', u'V2EX', u'iOS', u'Apple', u'生活', u'Internet', u'Geek', u'电子游戏', u'品牌']
+                categories = [u'Discovery', u'GeeKaa', u'Local', u'Coding', u'Design', u'Geek', u'Internet', u'Life Style', u'Game']
                 for category in categories:
                     i = i + 1
                     if i == len(categories):
