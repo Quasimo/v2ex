@@ -138,9 +138,9 @@ class TwitterCallbackHandler(webapp.RequestHandler):
             else:
                 oauth_token = self.request.get('oauth_token')
                 if host == 'geekaa3.appspot.com':
-                    self.redirect('http://geekaa.com/twitter/oauth?oauth_token=' + oauth_token)
+                    self.redirect('http://geekaa3.appspot.com/twitter/oauth?oauth_token=' + oauth_token)
                 else:
-                    self.redirect('http://geekaa3.appspot.com/twitter/oauth?oauth_token=' + oauth_token)        
+                    self.redirect('http://geekaa.com/twitter/oauth?oauth_token=' + oauth_token)        
 
 class TwitterHomeHandler(webapp.RequestHandler):
     def get(self):
