@@ -1,5 +1,5 @@
 <div id="Bottom">
-    <div id="BottomMain"><div id="BottomMain"><div class="fr" align="right" style="padding-top: 20px;"><a href="http://code.google.com/appengine/" target="_blank"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" border="0" alt="Powered by Google App Engine" align="absmiddle" /></a> &nbsp; <a href="http://www.getcloudapp.com/" target="_blank"><img src="http://web.me.com/v2ex.livid/logos/cloudapp.png" border="0" align="absmiddle" /></a><!-- &nbsp;  <a href="http://www.rackspacecloud.com/1209.html" target="_blank"><img src="/static/img/rackspacecloud.png" border="0" alt="Powered by Rackspace Cloud" align="absmiddle" /></a> &nbsp; <a href="http://www.apple.com/mobileme" target="_blank"><img src="http://web.me.com/v2ex.livid/v2ex/static/img/mobileme.gif" border="0" align="absmiddle" /></a> --> 
+    <div id="BottomMain"><div class="fr" align="right" style="padding-top: 20px;"><a href="http://code.google.com/appengine/" target="_blank"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" border="0" alt="Powered by Google App Engine" align="absmiddle" /></a> &nbsp; <a href="http://www.getcloudapp.com/" target="_blank"><img src="http://web.me.com/v2ex.livid/logos/cloudapp.png" border="0" align="absmiddle" /></a><!-- &nbsp;  <a href="http://www.rackspacecloud.com/1209.html" target="_blank"><img src="/static/img/rackspacecloud.png" border="0" alt="Powered by Rackspace Cloud" align="absmiddle" /></a> &nbsp; <a href="http://www.apple.com/mobileme" target="_blank"><img src="http://web.me.com/v2ex.livid/v2ex/static/img/mobileme.gif" border="0" align="absmiddle" /></a> --> 
         </div>
         <strong><a href="/about" class="dark">About</a></strong> &nbsp; | &nbsp; <strong><a href="/faq" class="dark">FAQ</a></strong> &nbsp; | &nbsp; <strong><a href="/updates" class="dark">Day Day Up</a></strong> &nbsp; | &nbsp; <strong><a href="/plan" class="dark">Plan</a></strong> &nbsp; | &nbsp; <strong><a href="http://site.douban.com/106729/" class="dark" target="_blank">DouBan Site</a></strong> &nbsp; | &nbsp; <strong><a href="/advertise" class="dark">Advertise</a></strong>
         <div class="sep10"></div>
@@ -14,9 +14,10 @@
         Lovingly made by <a href="http://github.com/Quasimo/v2ex">Project Babel</a> VERSION: {{ system_version }} fork from <a href="http://cn.olivida.com/" target="_blank" class="dark"><strong>OLIVIDA</strong></a>
         </small>
     </div>
+    {% if site.analytics %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-18016908-1']);
+      _gaq.push(['_setAccount', '{{ site.analytics }}']);
       _gaq.push(['_setDomainName', 'none']);
       _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_trackPageview']);
@@ -27,4 +28,5 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    {% endif %}
 </div>

@@ -1,4 +1,4 @@
-@charset "utf-8"
+i @charset "utf-8"
 
 /*
 	V2EX CSS (Desktop)
@@ -125,7 +125,8 @@ a.dark:hover {
 	/*background: -moz-linear-gradient(center top , #444, #111) repeat scroll 0 0 transparent; 
 	background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111));*/ 
 	height: 40px;
-	border-bottom: 2px solid #e1e1e1;
+	border-bottom: 2px solid #e1e1e1;  
+	background-image: url("/static/img/metro182.png")  
 }
 
 #TopMain {
@@ -136,7 +137,8 @@ a.dark:hover {
 }
 
 #Logo {
-	background-image: url("/static/img/logo.png");
+	background-image: url("/static/img/logo.png") !important; 
+	background-image: url("/static/img/logo.gif") ;       
 	width: 144px;
 	height: 40px;
 	cursor: pointer;
