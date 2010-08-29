@@ -16,7 +16,7 @@
                 <div class="cell">
                     <form action="/edit/topic/{{ topic.num }}" method="post">
                     {% if errors %}
-        			<strong>请解决以下错误之后继续。</strong>
+        			<strong class="error">请解决以下错误之后继续。</strong>
         			<div class="sep10"></div>
         			<ul>
         				{% if topic_title_error %}

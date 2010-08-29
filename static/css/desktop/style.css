@@ -705,14 +705,12 @@ a.tiny_label:hover {
 .topic_content .imgly {
 	max-width: 635px;
 }
-}
 
 /* Quasimo Addition */
-
-.error-msg{
+strong.error{
 	background: #fee;
 	color: #900;
-	padding: 5px;
+	padding: 5px;	
 }
 
 #Bottom small a{
