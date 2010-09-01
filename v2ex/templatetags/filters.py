@@ -1,4 +1,5 @@
 import re
+import logging
 
 from django import template
 from datetime import timedelta
@@ -36,6 +37,18 @@ def clly(value):
     else:
         return value
 register.filter(clly)
+
+# auto convert youtube.com links to player
+def youtube(value):
+    videos = re.findall('(http://www.youtube.com/watch\?v=[a-zA-Z0-9\-\_]+)\s?', value)
+    if (len(videos) > 0):
+        for video in videos:
+            video_id = re.findall('http://www.youtube.com/watch\?v=([a-zA-Z0-9\-\_]+)', video)
+            value = value.replace('http://www.youtube.com/watch?v=' + video_id[0], '<object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/' + video_id[0] + '?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/' + video_id[0] + '?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>')
+        return value
+    else:
+        return value
+register.filter(youtube)
 
 # auto convert @username to clickable links
 def mentions(value):
@@ -78,3 +91,28 @@ register.filter(avatar)
 def gist(value):
     return re.sub(r'(http://gist.github.com/[\d]+)', r'<script src="\1.js"></script>', value)
 register.filter(gist)
+
+_base_js_escapes = (
+    ('\\', r'\u005C'),
+    ('\'', r'\u0027'),
+    ('"', r'\u0022'),
+    ('>', r'\u003E'),
+    ('<', r'\u003C'),
+    ('&', r'\u0026'),
+    ('=', r'\u003D'),
+    ('-', r'\u002D'),
+    (';', r'\u003B'),
+    (u'\u2028', r'\u2028'),
+    (u'\u2029', r'\u2029')
+)
+
+# Escape every ASCII character with a value less than 32.
+_js_escapes = (_base_js_escapes +
+               tuple([('%c' % z, '\\u%04X' % z) for z in range(32)]))
+
+def escapejs(value):
+    """Hex encodes characters for use in JavaScript strings."""
+    for bad, good in _js_escapes:
+        value = value.replace(bad, good)
+    return value
+register.filter(escapejs)
