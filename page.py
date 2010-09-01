@@ -125,6 +125,76 @@ class AdvertisersHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'advertisers.html')
         output = template.render(path, template_values)
         self.response.out.write(output)
+        
+class InspirationHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › iNspiration'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'inspiration.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)
+        
+class DribbbleHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › iNspiration › dribbble'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'inspiration_dribbble.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)
+        
+class DribbblePopularHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › iNspiration › dribbble › popular'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'inspiration_dribbble_popular.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)  
+
+class DribbbleEveryoneHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › iNspiration › dribbble › everyone'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'inspiration_dribbble_everyone.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)  
+
+class DribbbleDebutsHandler(webapp.RequestHandler):
+    def get(self):
+        site = GetSite()
+        template_values = {}
+        template_values['site'] = site
+        template_values['rnd'] = random.randrange(1, 100)
+        member = CheckAuth(self)
+        if member:
+            template_values['member'] = member
+        template_values['page_title'] = site.title + u' › iNspiration › dribbble › debuts'
+        path = os.path.join(os.path.dirname(__file__), 'tpl', 'desktop', 'inspiration_dribbble_debuts.html')
+        output = template.render(path, template_values)
+        self.response.out.write(output)                                        
 
 def main():
     application = webapp.WSGIApplication([
@@ -133,7 +203,12 @@ def main():
     ('/plan', PlanHandler),
     ('/updates', UpdatesHandler),
     ('/advertise', AdvertiseHandler),
-    ('/advertisers', AdvertisersHandler)
+    ('/advertisers', AdvertisersHandler),
+    ('/inspiration', InspirationHandler),
+    ('/inspiration/dribbbla', DribbbleHandler),
+    ('/inspiration/dribbbla/popular', DribbblePopularHandler),
+    ('/inspiration/dribbbla/everyone', DribbbleEveryoneHandler),
+    ('/inspiration/dribbbla/debuts', DribbbleDebutsHandler)        
     ],
                                          debug=True)
     util.run_wsgi_app(application)

@@ -162,7 +162,7 @@ class HomeHandler(webapp.RequestHandler):
             if c is None:
                 c = ''
                 i = 0
-                categories = [u'Discovery', u'GeeKaa', u'Local', u'Coding', u'Design', u'Geek', u'Internet', u'Life Style', u'Game']
+                categories = [u'Discovery', u'GeeKaa', u'Local', u'Coding', u'Design', u'Geek', u'Internet', u'Life Style', u'ACG']
                 for category in categories:
                     i = i + 1
                     if i == len(categories):
