@@ -50,6 +50,18 @@ def youtube(value):
         return value
 register.filter(youtube)
 
+# auto convert tudou.com links to player by quasimo /* not perfact */
+def tudou(value):
+    videos = re.findall('(http://www.tudou.com/programs/view/[a-zA-Z0-9\-\_]+)\s?', value)
+    if (len(videos) > 0):
+        for video in videos:
+            video_id = re.findall('http://www.tudou.com/programs/view/([a-zA-Z0-9\-\_]+)', video)
+            value = value.replace('http://www.tudou.com/programs/view/' + video_id[0], '<embed src="http://www.tudou.com/v/' + video_id[0] + '/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed>')
+        return value
+    else:
+        return value
+register.filter(tudou)
+
 # auto convert @username to clickable links
 def mentions(value):
     ms = re.findall('(@[a-zA-Z0-9\_]+\.?)\s?', value)
