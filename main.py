@@ -57,7 +57,6 @@ class HomeHandler(webapp.RequestHandler):
             return
         site = GetSite()
         browser = detect(self.request)
-        self.session = Session()
         template_values = {}
         template_values['site'] = GetSite()
         template_values['rnd'] = random.randrange(1, 100)
@@ -514,7 +513,7 @@ class ForgotHandler(webapp.RequestHandler):
                 mail_template_values['ip'] = self.request.remote_addr
                 path = os.path.join(os.path.dirname(__file__), 'tpl', 'mail', 'reset_password.txt')
                 output = template.render(path, mail_template_values)
-                result = mail.send_mail(sender="V2EX <v2ex.livid@gmail.com>",
+                result = mail.send_mail(sender="GeeKaa <geekaamail@gmail.com>",
                               to= one.email,
                               subject="=?UTF-8?B?" + base64.b64encode((u"[" + site.title + u"] 重新设置密码").encode('utf-8')) + "?=",
                               body=output)

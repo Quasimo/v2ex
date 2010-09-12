@@ -25,6 +25,19 @@ def imgly(value):
         return value
 register.filter(imgly)
 
+# auto convert xiami.com links to player
+# example: http://www.xiami.com/song/16024
+def xiami(value):
+    musics = re.findall('(http://www.xiami.com/song/[0-9]+)\s?', value)
+    if (len(musics) > 0):
+        for music in musics:
+            music_id = re.findall('http://www.xiami.com/song/([0-9]+)', music)
+            value = value.replace('http://www.xiami.com/song/' + music_id[0], '<embed src="http://www.xiami.com/widget/15289_' + music_id[0] + '/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent"></embed>')
+        return value
+    else:
+        return value
+register.filter(xiami)
+
 # auto convert cl.ly/abcd links to image tags
 def clly(value):
     imgs = re.findall('(http://cl.ly/[a-zA-Z0-9]+)\s?', value)
@@ -61,6 +74,21 @@ def tudou(value):
     else:
         return value
 register.filter(tudou)
+
+# auto convert youku.com links to player
+# example: http://v.youku.com/v_show/id_XMjA1MDU2NTY0.html
+def youku(value):
+    videos = re.findall('(http://v.youku.com/v_show/id_[a-zA-Z0-9]+.html)\s?', value)
+    logging.error(value)
+    logging.error(videos)
+    if (len(videos) > 0):
+        for video in videos:
+            video_id = re.findall('http://v.youku.com/v_show/id_([a-zA-Z0-9]+).html', video)
+            value = value.replace('http://v.youku.com/v_show/id_' + video_id[0] + '.html', '<embed src="http://player.youku.com/player.php/sid/' + video_id[0] + '/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed>')
+        return value
+    else:
+        return value
+register.filter(youku)
 
 # auto convert @username to clickable links
 def mentions(value):
